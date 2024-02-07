@@ -11,7 +11,8 @@ class ViewController: UIViewController {
     
     @IBOutlet var countriesTableView: UITableView!
     
-    var countries: [String] = ["Germany", "USA", "China", "Australia", "Indonesia", "Canada", "Filipino", "Brazil", "Mexico   "]
+    var countries: [String] = ["Germany", "USA", "China", "Australia", "Indonesia", "Canada", "Filipino", "Brazil", "Mexico"]
+    var continents: [String: String] = ["Germany": "Europe", "USA":"North America", "China":"Asia", "Australia":"Oceania", "Indonesia":"SEA", "Canada":"North America", "Filipino":"SEA", "Brazil":"South America", "Mexico": "North America"]
     
     struct Constant {
         static let cellIdentifier = "magicCountryCell"
@@ -41,7 +42,9 @@ extension ViewController: UITableViewDataSource {
                                                           for: indexPath)
         
         var cellConfiguration = tableViewCell.defaultContentConfiguration()
-        cellConfiguration.text = countries[indexPath.row]
+        let countryName = countries[indexPath.row]
+        cellConfiguration.text = countryName
+        cellConfiguration.secondaryText = continents[countryName]
         tableViewCell.contentConfiguration = cellConfiguration
         
         return tableViewCell
