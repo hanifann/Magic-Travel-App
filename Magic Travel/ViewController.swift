@@ -11,6 +11,8 @@ class ViewController: UIViewController {
     
     @IBOutlet var countriesTableView: UITableView!
     
+    var countries: [String] = ["Germany", "USA", "China", "Australia", "Indonesia", "Canada", "Filipino", "Brazil", "Mexico   "]
+    
     struct Constant {
         static let cellIdentifier = "magicCountryCell"
     }
@@ -26,7 +28,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return countries.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -37,6 +39,10 @@ extension ViewController: UITableViewDataSource {
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableViewCell = tableView.dequeueReusableCell(withIdentifier: Constant.cellIdentifier,
                                                           for: indexPath)
+        
+        var cellConfiguration = tableViewCell.defaultContentConfiguration()
+        cellConfiguration.text = countries[indexPath.row]
+        tableViewCell.contentConfiguration = cellConfiguration
         
         return tableViewCell
     }
