@@ -10,10 +10,15 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet var countriesTableView: UITableView!
+    
+    struct Constant {
+        static let cellIdentifier = "magicCountryCell"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        countriesTableView.register(UITableViewCell.self,
+                                    forCellReuseIdentifier: Constant.cellIdentifier)
     }
 
 
@@ -30,7 +35,8 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, 
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let tableViewCell = tableView.dequeueReusableCell(withIdentifier: Constant.cellIdentifier,
+                                                          for: indexPath)
         
         return tableViewCell
     }
