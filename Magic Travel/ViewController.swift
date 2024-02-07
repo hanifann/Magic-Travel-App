@@ -46,7 +46,12 @@ extension ViewController: UITableViewDataSource {
         
         return tableViewCell
     }
-    
-    
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("User tapped cell at \(indexPath)")
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
